@@ -1,115 +1,88 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Gratitude Journal</title>
-    <style>
-      /* Style the message bubble */
-      .bubble {
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px;
-        border-radius: 10px;
-        max-width: 60%;
-        margin: 10px;
-      }
+// Get the form elements
+const emailInput = document.getElementById('email');
+const onethingContainer = document.getElementById('onethingContainer');
+const onethingQuestion = document.getElementById('onethingQuestion');
+const onethingInput = document.getElementById('onething');
+const monthAccomplishmentContainer = document.getElementById('monthAccomplishmentContainer');
+const monthAccomplishmentQuestion = document.getElementById('monthAccomplishmentQuestion');
+const monthAccomplishmentInput = document.getElementById('monthAccomplishment');
+const weekAccomplishmentContainer = document.getElementById('weekAccomplishmentContainer');
+const weekAccomplishmentQuestion = document.getElementById('weekAccomplishmentQuestion');
+const weekAccomplishmentInput = document.getElementById('weekAccomplishment');
+const accomplishmentContainer = document.getElementById('accomplishmentContainer');
+const accomplishmentQuestion = document.getElementById('accomplishmentQuestion');
+const accomplishmentInput = document.getElementById('accomplishment');
+const improvementContainer = document.getElementById('improvementContainer');
+const improvementQuestion = document.getElementById('improvementQuestion');
+const improvementInput = document.getElementById('improvement');
+const gratitudeContainer = document.getElementById('gratitudeContainer');
+const gratitudeQuestion = document.getElementById('gratitudeQuestion');
+const gratitudeInput = document.getElementById('gratitude');
 
-      /* Style the message container */
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-        height: 100%; 
-      }
+// Hide all the containers initially
+onethingContainer.style.display = 'none';
+monthAccomplishmentContainer.style.display = 'none';
+weekAccomplishmentContainer.style.display = 'none';
+accomplishmentContainer.style.display = 'none';
+improvementContainer.style.display = 'none';
+gratitudeContainer.style.display = 'none';
 
-      /* Style the input field */
-      input[type=text], input[type=email] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: none;
-        border-bottom: 2px solid #000;
-        resize: vertical; /* enable vertical resizing */
-      }
-
-      /* Style the submit button */
-      button[type=submit], button[type=button] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      
-      h1{
-          color: white;
-          text-align:center;
-      }
-      
-    </style>
-  </head>
-  <body bgcolor="black" >
-
-    <h1>Achieve your goals by Journaling your day</h1>
-
-    <div class="container">
-      <form name="form1" method="POST" action="https://storm.cis.fordham.edu/~smalik18/journalredirect1.php">
-        
-        <!-- Email  --> 
-        <div class="bubble">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" required>
-          <button type="button" onclick="submitOnething()">Send</button>
-        </div>
-
-        <!-- One thing for the year -->
-        <div id="onethingContainer" class="bubble" style="display: none;">
-          <p id="onethingQuestion">What is one thing you want to accomplish this year?</p>
-          <input type="text" id="onething" name="onething" placeholder="Enter your one thing here..." style="resize: vertical;"> <!-- enable vertical resizing -->
-          <button type="button" onclick="submitOnething()">Send</button>
-        </div>
-
-        <!-- Accomplishment for the month -->
-        <div id="monthAccomplishmentContainer" class="bubble" style="display: none;">
-          <p id="monthAccomplishmentQuestion">What do you want to accomplish this month?</p>
-          <input type="text" id="monthAccomplishment" name="monthAccomplishment" placeholder="Enter your accomplishment here..." style="resize: vertical;">
-          <button type="button" onclick="submitMonthAccomplishment()">Send</button>
-        </div>
-
-        <!-- Accomplishment for the week -->
-        <div id="weekAccomplishmentContainer" class="bubble" style="display: none;">
-          <p id="weekAccomplishmentQuestion">What do you want to accomplish this week?</p>
-          <input type="text" id="weekAccomplishment" name="weekAccomplishment" placeholder="Enter your accomplishment here..." style="resize: vertical;">
-          <button type="button" onclick="submitWeekAccomplishment()">Send</button>
-        </div>
-
-        <!-- accomplishment today --> 
-
-        <div id="accomplishmentContainer" class="bubble" style="display: none;">
-            <p id="accomplishmentQuestion">Great! What did you accomplish today?</p>
-          <input type="text" id="accomplishment" name="accomplishment" placeholder="Enter your accomplishment here..." style="resize: vertical;"> <!-- enable vertical resizing -->
-          <button type="button" onclick="submitAccomplishment()">Send</button>
-        </div>
-        
-                <!-- improvement --> 
+//Show the one thing container when email is entered
+emailInput.addEventListener('change', () => {
+  onethingContainer.style.display = 'block';
+});
 
 
-        <div id="improvementContainer" class="bubble" style="display: none;">
-            <p id="improvementQuestion">Well done! What could you improve tomorrow?</p>
-          <input type="text" id="improvement" name="improvement" placeholder="Enter your improvement idea here...">
-          <button type="submit" onsubmit="submitImprovement()">Send</button>
-        </div>
-        
-        <div id="gratitudeContainer" class="bubble" style="display: none;">
-            <p id="gratitudeQuestion">Great! What are you grateful for today?</p>
-          <input type="text" id="gratitude" name="gratitude" placeholder="Enter your gratitude here..." style="resize: vertical;"> <!-- enable vertical resizing -->
-          <button type="button" onclick="submitGratitude()">Send</button>
-        </div>
-        
-      </form>
 
-    <script src="script.js"></script>
-  </body>
-</html>
+// Show the month accomplishment container when one thing is submitted
+function submitOnething() {
+  const onething = onethingInput.value.trim();
+  if (onething) {
+    onethingContainer.style.display = 'none';
+    monthAccomplishmentContainer.style.display = 'block';
+  }
+}
+
+// Show the week accomplishment container when month accomplishment is submitted
+function submitMonthAccomplishment() {
+  const monthAccomplishment = monthAccomplishmentInput.value.trim();
+  if (monthAccomplishment) {
+    monthAccomplishmentContainer.style.display = 'none';
+    weekAccomplishmentContainer.style.display = 'block';
+  }
+}
+
+// Show the accomplishment container when week accomplishment is submitted
+function submitWeekAccomplishment() {
+  const weekAccomplishment = weekAccomplishmentInput.value.trim();
+  if (weekAccomplishment) {
+    weekAccomplishmentContainer.style.display = 'none';
+    accomplishmentContainer.style.display = 'block';
+  }
+}
+
+// Show the gratitude container when accomplishment is submitted
+function submitAccomplishment() {
+  const accomplishment = accomplishmentInput.value.trim();
+  if (accomplishment) {
+    accomplishmentContainer.style.display = 'none';
+    gratitudeContainer.style.display = 'block';
+  }
+}
+
+// Show the improvement container when gratitude is submitted
+function submitGratitude() {
+  const gratitude = gratitudeInput.value.trim();
+  if (gratitude) {
+    gratitudeContainer.style.display = 'none';
+    improvementContainer.style.display = 'block';
+  }
+}
+
+// Submit the form when improvement is submitted
+function submitImprovement() {
+  const improvement = improvementInput.value.trim();
+  if (improvement) {
+    document.form1.submit();
+  }
+}
