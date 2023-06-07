@@ -1,1 +1,1 @@
-# onethingjournal
+# One Thing Journal
